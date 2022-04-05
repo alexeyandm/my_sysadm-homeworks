@@ -2,6 +2,10 @@
 
 1. Установите средство виртуализации [Oracle VirtualBox](https://www.virtualbox.org/).
 
+**Ответ:** Установил (ранее уже использовал). Также настроил VM и SSH подключение к Yandex.Cloud
+![Image alt](https://github.com/alexeyandm/my_sysadm-homeworks/raw/devsys10/03-sysadmin-01-terminal/YC_DevOps.png)
+
+
 1. Установите средство автоматизации [Hashicorp Vagrant](https://www.vagrantup.com/).
 
 1. В вашем основном окружении подготовьте удобный для дальнейшей работы терминал. Можно предложить:
