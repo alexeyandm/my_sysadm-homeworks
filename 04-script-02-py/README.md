@@ -42,7 +42,7 @@ for result in result_os.split('\n'):
 ```
 
 ### Ваш скрипт:
-```python
+```Скрипт
 ???
 ```
 

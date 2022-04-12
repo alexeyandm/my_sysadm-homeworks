@@ -1,40 +1,16 @@
 # Домашнее задание к занятию "3.1. Работа в терминале, лекция 1"
 
 1). Установите средство виртуализации [Oracle VirtualBox](https://www.virtualbox.org/).
-
-**Ответ:** Установил (ранее уже использовал). Также настроил VM и SSH подключение к Yandex.Cloud
-![Image alt](https://github.com/alexeyandm/my_sysadm-homeworks/raw/devsys10/03-sysadmin-01-terminal/YC_DevOps.png)
+**Ответ:** установил
 
 
 2). Установите средство автоматизации [Hashicorp Vagrant](https://www.vagrantup.com/).
-
-**Ответ (для 2-7):** тут, к сожалению, проблема:
-```bash
-brew install vagrant             
-==> Downloading https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.dmg
-##O=#  #                                                                      
-curl: (22) The requested URL returned error: 405 
-Error: Download failed on Cask 'vagrant' with message: Download failed: https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.dmg
-```
-* Error 405 Not allowed по ссылке: https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.dmg
-* Для России заблокирован доступ на установку - https://dtf.ru/u/161178-net-dannyh/1103917-hashicorp-zablokirovala-dostup-dlya-rf
+**Ответ:** установил
 
 
 3). В вашем основном окружении подготовьте удобный для дальнейшей работы терминал. Можно предложить:
+**Ответ:** подготовил
 
-	* iTerm2 в Mac OS X
-	* Windows Terminal в Windows
-	* выбрать цветовую схему, размер окна, шрифтов и т.д.
-	* почитать о кастомизации PS1/применить при желании.
-
-	Несколько популярных проблем:
-	* Добавьте Vagrant в правила исключения перехватывающих трафик для анализа антивирусов, таких как Kaspersky, если у вас возникают связанные с SSL/TLS ошибки,
-	* MobaXterm может конфликтовать с Vagrant в Windows,
-	* Vagrant плохо работает с директориями с кириллицей (может быть вашей домашней директорией), тогда можно либо изменить [VAGRANT_HOME](https://www.vagrantup.com/docs/other/environmental-variables#vagrant_home), либо создать в системе профиль пользователя с английским именем,
-	* VirtualBox конфликтует с Windows Hyper-V и его необходимо [отключить](https://www.vagrantup.com/docs/installation#windows-virtualbox-and-hyper-v),
-	* [WSL2](https://docs.microsoft.com/ru-ru/windows/wsl/wsl2-faq#does-wsl-2-use-hyper-v-will-it-be-available-on-windows-10-home) использует Hyper-V, поэтому с ним VirtualBox также несовместим,
-	* аппаратная виртуализация (Intel VT-x, AMD-V) должна быть активна в BIOS,
-	* в Linux при установке [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads) может дополнительно потребоваться пакет `linux-headers-generic` (debian-based) / `kernel-devel` (rhel-based).
 
 4). С помощью базового файла конфигурации запустите Ubuntu 20.04 в VirtualBox посредством Vagrant:
 
@@ -50,11 +26,130 @@ Error: Download failed on Cask 'vagrant' with message: Download failed: https://
 
 	* `vagrant suspend` выключит виртуальную машину с сохранением ее состояния (т.е., при следующем `vagrant up` будут запущены все процессы внутри, которые работали на момент вызова suspend), `vagrant halt` выключит виртуальную машину штатным образом.
 
-5). Ознакомьтесь с графическим интерфейсом VirtualBox, посмотрите как выглядит виртуальная машина, которую создал для вас Vagrant, какие аппаратные ресурсы ей выделены. Какие ресурсы выделены по-умолчанию?
+**Ответ:** выполнил
 
-6). Ознакомьтесь с возможностями конфигурации VirtualBox через Vagrantfile: [документация](https://www.vagrantup.com/docs/providers/virtualbox/configuration.html). Как добавить оперативной памяти или ресурсов процессора виртуальной машине?
+'''bash
+➜  Vagrant_dir vagrant up
+Bringing machine 'default' up with 'virtualbox' provider...
+==> default: Box 'bento/ubuntu-20.04' could not be found. Attempting to find and install...
+    default: Box Provider: virtualbox
+    default: Box Version: >= 0
+==> default: Loading metadata for box 'bento/ubuntu-20.04'
+    default: URL: https://vagrantcloud.com/bento/ubuntu-20.04
+==> default: Adding box 'bento/ubuntu-20.04' (v202112.19.0) for provider: virtualbox
+    default: Downloading: https://vagrantcloud.com/bento/boxes/ubuntu-20.04/versions/202112.19.0/providers/virtualbox.box
+==> default: Successfully added box 'bento/ubuntu-20.04' (v202112.19.0) for 'virtualbox'!
+==> default: Importing base box 'bento/ubuntu-20.04'...
+==> default: Matching MAC address for NAT networking...
+==> default: Checking if box 'bento/ubuntu-20.04' version '202112.19.0' is up to date...
+==> default: Setting the name of the VM: Vagrant_dir_default_1649793823456_78277
+Vagrant is currently configured to create VirtualBox synced folders with
+the `SharedFoldersEnableSymlinksCreate` option enabled. If the Vagrant
+guest is not trusted, you may want to disable this option. For more
+information on this option, please refer to the VirtualBox manual:
+
+  https://www.virtualbox.org/manual/ch04.html#sharedfolders
+
+This option can be disabled globally with an environment variable:
+
+  VAGRANT_DISABLE_VBOXSYMLINKCREATE=1
+
+or on a per folder basis within the Vagrantfile:
+
+  config.vm.synced_folder '/host/path', '/guest/path', SharedFoldersEnableSymlinksCreate: false
+==> default: Clearing any previously set network interfaces...
+==> default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+==> default: Forwarding ports...
+    default: 22 (guest) => 2222 (host) (adapter 1)
+==> default: Booting VM...
+==> default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 127.0.0.1:2222
+    default: SSH username: vagrant
+    default: SSH auth method: private key
+    default: 
+    default: Vagrant insecure key detected. Vagrant will automatically replace
+    default: this with a newly generated keypair for better security.
+    default: 
+    default: Inserting generated public key within guest...
+    default: Removing insecure key from the guest if it's present...
+    default: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> default: Machine booted and ready!
+==> default: Checking for guest additions in VM...
+==> default: Mounting shared folders...
+    default: /vagrant => /Users/almarchenko/Vagrant_dir
+,,,
+
+
+'''bash
+➜  Vagrant_dir vagrant suspend
+==> default: Saving VM state and suspending execution...
+
+➜  Vagrant_dir vagrant up
+Bringing machine 'default' up with 'virtualbox' provider...
+==> default: Checking if box 'bento/ubuntu-20.04' version '202112.19.0' is up to date...
+==> default: Resuming suspended VM...
+==> default: Booting VM...
+==> default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 127.0.0.1:2222
+    default: SSH username: vagrant
+    default: SSH auth method: private key
+==> default: Machine booted and ready!
+==> default: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+==> default: flag to force provisioning. Provisioners marked to run always will still run.
+'''
+
+5). Ознакомьтесь с графическим интерфейсом VirtualBox, посмотрите как выглядит виртуальная машина, которую создал для вас Vagrant, какие аппаратные ресурсы ей выделены. Какие ресурсы выделены по-умолчанию?
+**Ответ:**
+   - RAM: 1024 MB
+   - vCPU: 2
+   - SATA: 64 GB
+   - Video Memory: 4MB
+
+6). Ознакомьтесь с возможностями конфигурации VirtualBox через Vagrantfile: [документация](https://www.vagrantup.com/docs/providers/virtualbox/configuration.html). 
+Как добавить оперативной памяти или ресурсов процессора виртуальной машине?
+**Ответ:** Изменить в конфиге: _v.memory = 1024_
 
 7). Команда `vagrant ssh` из директории, в которой содержится Vagrantfile, позволит вам оказаться внутри виртуальной машины без каких-либо дополнительных настроек. Попрактикуйтесь в выполнении обсуждаемых команд в терминале Ubuntu.
+**Ответ:** подключение по SSH
+'''bash
+➜  Vagrant_dir vagrant ssh-config
+Host default
+  HostName 127.0.0.1
+  User vagrant
+  Port 2222
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentityFile /Users/almarchenko/Vagrant_dir/.vagrant/machines/default/virtualbox/private_key
+  IdentitiesOnly yes
+  LogLevel FATAL
+
+➜  Vagrant_dir 
+➜  Vagrant_dir 
+➜  Vagrant_dir ssh vagrant@127.0.0.1 -p 2222 -i /Users/almarchenko/Vagrant_dir/.vagrant/machines/default/virtualbox/private_key
+Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-91-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 12 Apr 2022 08:27:29 PM UTC
+
+  System load:  0.05               Processes:             123
+  Usage of /:   11.6% of 30.88GB   Users logged in:       0
+  Memory usage: 18%                IPv4 address for eth0: 10.0.2.15
+  Swap usage:   0%
+
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+Last login: Tue Apr 12 20:08:33 2022 from 10.0.2.2
+vagrant@vagrant:~$ 
+vagrant@vagrant:~$ pwd
+/home/vagrant
+vagrant@vagrant:~$ 
+'''
 
 8). Ознакомиться с разделами `man bash`, почитать о настройках самого bash:
     * какой переменной можно задать длину журнала `history`, и на какой строчке manual это описывается?
@@ -66,13 +161,16 @@ ignoredups — не сохранять строки, совпадающие с �
 ignoreboth — использовать обе опции ‘ignorespace’ и ‘ignoredups’
     
 9). В каких сценариях использования применимы скобки `{}` и на какой строчке `man bash` это описано?
+
 **Ответ:** Compound Commands -> { list; } - line 257
 
 10). С учётом ответа на предыдущий вопрос, как создать однократным вызовом `touch` 100000 файлов? Получится ли аналогичным образом создать 300000? Если нет, то почему?
+
 **Ответ:** touch f{0..100000}.txt
 300000 - не получится, срабатывает ограничение: "Argument list too long"
 
 11). В man bash поищите по `/\[\[`. Что делает конструкция `[[ -d /tmp ]]`
+
 **Ответ:** возвращает статус 0 или 1, условие: существует ли /tmp и является ли данный файл директорией
 
 
@@ -87,34 +185,42 @@ ignoreboth — использовать обе опции ‘ignorespace’ и �
 	(прочие строки могут отличаться содержимым и порядком)
     В качестве ответа приведите команды, которые позволили вам добиться указанного вывода или соответствующие скриншоты.
 
+**Ответ:**
+'''bash
+vagrant@vagrant:~$ mkdir /tmp/new_path_directory/
+vagrant@vagrant:~$ mkdir /usr/local/bin/
+mkdir: cannot create directory ‘/usr/local/bin/’: File exists
+vagrant@vagrant:~$ cp -p /bin/bash /tmp/new_path_directory/bash
+vagrant@vagrant:~$ type -a bash
+bash is /tmp/new_path_directory/bash
+bash is /usr/bin/bash
+bash is /bin/bash
+vagrant@vagrant:~$ 
+
+vagrant@vagrant:~$ cp -p /bin/bash /usr/local/bin/bash
+cp: cannot create regular file '/usr/local/bin/bash': Permission denied
+vagrant@vagrant:~$ chmod o+rwx /usr/local/bin/
+chmod: changing permissions of '/usr/local/bin/': Operation not permitted
+vagrant@vagrant:~$ sudo chmod o+rwx /usr/local/bin/
+vagrant@vagrant:~$ cp -p /bin/bash /usr/local/bin/bash
+vagrant@vagrant:~$ type -a bash
+bash is /tmp/new_path_directory/bash
+bash is /usr/local/bin/bash
+bash is /usr/bin/bash
+bash is /bin/bash
+vagrant@vagrant:~$ 
+'''
+
 13). Чем отличается планирование команд с помощью `batch` и `at`?
 
+**batch** - планирует задания и выполняет их если позволяет уровень загрузки системы (по умолчанию 1.5). Если средняя загрузка системы выше указанной, задания будут ждать в очереди
+**at** -  используется для назначения и выполнения задания без учета средней загрузки системы
+
 14). Завершите работу виртуальной машины чтобы не расходовать ресурсы компьютера и/или батарею ноутбука.
-
- 
+**Ответ:** done
+'''bash
+vagrant@vagrant:~$ sudo poweroff
+Connection to 127.0.0.1 closed by remote host.
+Connection to 127.0.0.1 closed.
+ '''
  ---
-
-## Как сдавать задания
-
-Обязательными к выполнению являются задачи без указания звездочки. Их выполнение необходимо для получения зачета и диплома о профессиональной переподготовке.
-
-Задачи со звездочкой (*) являются дополнительными задачами и/или задачами повышенной сложности. Они не являются обязательными к выполнению, но помогут вам глубже понять тему.
-
-Домашнее задание выполните в файле readme.md в github репозитории. В личном кабинете отправьте на проверку ссылку на .md-файл в вашем репозитории.
-
-Также вы можете выполнить задание в [Google Docs](https://docs.google.com/document/u/0/?tgif=d) и отправить в личном кабинете на проверку ссылку на ваш документ.
-Название файла Google Docs должно содержать номер лекции и фамилию студента. Пример названия: "1.1. Введение в DevOps — Сусанна Алиева".
-
-Если необходимо прикрепить дополнительные ссылки, просто добавьте их в свой Google Docs.
-
-Перед тем как выслать ссылку, убедитесь, что ее содержимое не является приватным (открыто на комментирование всем, у кого есть ссылка), иначе преподаватель не сможет проверить работу. Чтобы это проверить, откройте ссылку в браузере в режиме инкогнито.
-
-[Как предоставить доступ к файлам и папкам на Google Диске](https://support.google.com/docs/answer/2494822?hl=ru&co=GENIE.Platform%3DDesktop)
-
-[Как запустить chrome в режиме инкогнито ](https://support.google.com/chrome/answer/95464?co=GENIE.Platform%3DDesktop&hl=ru)
-
-[Как запустить  Safari в режиме инкогнито ](https://support.apple.com/ru-ru/guide/safari/ibrw1069/mac)
-
-Любые вопросы по решению задач задавайте в чате учебной группы.
-
----
