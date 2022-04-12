@@ -1,14 +1,17 @@
 # Домашнее задание к занятию "3.1. Работа в терминале, лекция 1"
 
 1). Установите средство виртуализации [Oracle VirtualBox](https://www.virtualbox.org/).
+
 **Ответ:** установил
 
 
 2). Установите средство автоматизации [Hashicorp Vagrant](https://www.vagrantup.com/).
+
 **Ответ:** установил
 
 
 3). В вашем основном окружении подготовьте удобный для дальнейшей работы терминал. Можно предложить:
+
 **Ответ:** подготовил
 
 
@@ -28,7 +31,7 @@
 
 **Ответ:** выполнил
 
-'''bash
+```bash
 ➜  Vagrant_dir vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
 ==> default: Box 'bento/ubuntu-20.04' could not be found. Attempting to find and install...
@@ -78,10 +81,10 @@ or on a per folder basis within the Vagrantfile:
 ==> default: Checking for guest additions in VM...
 ==> default: Mounting shared folders...
     default: /vagrant => /Users/almarchenko/Vagrant_dir
-,,,
+```
 
 
-'''bash
+```bash
 ➜  Vagrant_dir vagrant suspend
 ==> default: Saving VM state and suspending execution...
 
@@ -97,9 +100,10 @@ Bringing machine 'default' up with 'virtualbox' provider...
 ==> default: Machine booted and ready!
 ==> default: Machine already provisioned. Run `vagrant provision` or use the `--provision`
 ==> default: flag to force provisioning. Provisioners marked to run always will still run.
-'''
+```
 
 5). Ознакомьтесь с графическим интерфейсом VirtualBox, посмотрите как выглядит виртуальная машина, которую создал для вас Vagrant, какие аппаратные ресурсы ей выделены. Какие ресурсы выделены по-умолчанию?
+
 **Ответ:**
    - RAM: 1024 MB
    - vCPU: 2
@@ -111,8 +115,9 @@ Bringing machine 'default' up with 'virtualbox' provider...
 **Ответ:** Изменить в конфиге: _v.memory = 1024_
 
 7). Команда `vagrant ssh` из директории, в которой содержится Vagrantfile, позволит вам оказаться внутри виртуальной машины без каких-либо дополнительных настроек. Попрактикуйтесь в выполнении обсуждаемых команд в терминале Ubuntu.
+
 **Ответ:** подключение по SSH
-'''bash
+```bash
 ➜  Vagrant_dir vagrant ssh-config
 Host default
   HostName 127.0.0.1
@@ -149,7 +154,7 @@ vagrant@vagrant:~$
 vagrant@vagrant:~$ pwd
 /home/vagrant
 vagrant@vagrant:~$ 
-'''
+```
 
 8). Ознакомиться с разделами `man bash`, почитать о настройках самого bash:
     * какой переменной можно задать длину журнала `history`, и на какой строчке manual это описывается?
@@ -186,7 +191,7 @@ ignoreboth — использовать обе опции ‘ignorespace’ и �
     В качестве ответа приведите команды, которые позволили вам добиться указанного вывода или соответствующие скриншоты.
 
 **Ответ:**
-'''bash
+```bash
 vagrant@vagrant:~$ mkdir /tmp/new_path_directory/
 vagrant@vagrant:~$ mkdir /usr/local/bin/
 mkdir: cannot create directory ‘/usr/local/bin/’: File exists
@@ -209,7 +214,7 @@ bash is /usr/local/bin/bash
 bash is /usr/bin/bash
 bash is /bin/bash
 vagrant@vagrant:~$ 
-'''
+```
 
 13). Чем отличается планирование команд с помощью `batch` и `at`?
 
@@ -217,10 +222,12 @@ vagrant@vagrant:~$
 **at** -  используется для назначения и выполнения задания без учета средней загрузки системы
 
 14). Завершите работу виртуальной машины чтобы не расходовать ресурсы компьютера и/или батарею ноутбука.
+
 **Ответ:** done
-'''bash
+
+```bash
 vagrant@vagrant:~$ sudo poweroff
 Connection to 127.0.0.1 closed by remote host.
 Connection to 127.0.0.1 closed.
- '''
+ ```
  ---
