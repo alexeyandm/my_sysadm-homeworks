@@ -230,4 +230,3 @@ vagrant@vagrant:~$ sudo poweroff
 Connection to 127.0.0.1 closed by remote host.
 Connection to 127.0.0.1 closed.
  ```
- ---
